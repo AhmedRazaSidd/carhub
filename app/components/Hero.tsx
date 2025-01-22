@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Hero = () => {
   const handlScroll = () => {
-    console.log("hello");
+    console.log("hello");    
   };
   return (
     <div className="hero">
