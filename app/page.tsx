@@ -1,8 +1,8 @@
+import { fetchCars } from "@/utils";
 import { CarCard, CustomFilter, Hero, SearchBar } from "./components";
-import { dummyCars } from "@/dummyData/cars";
 
 export default function Home() {
-  const allCars = dummyCars;  
+  const allCars = fetchCars();  
   const isAllCarsEmpty =
     !Array.isArray(allCars) || allCars.length === 0 || !allCars;
 

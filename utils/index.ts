@@ -1,27 +1,27 @@
 import { CarProps } from "@/types";
 
-// export async function fetchCars() {
-//     const headers = {
-//         'x-rapidapi-key': 'b288741334mshd57289ebb7bed9ep140521jsn1c7290c8a5e4',
-//         'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
-//     };
+export async function fetchCars() {
+    const headers = {
+        'x-rapidapi-key': 'b288741334mshd57289ebb7bed9ep140521jsn1c7290c8a5e4',
+        'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+    };
 
-//     try {
-//         const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', {
-//             headers: headers
-//         });
+    try {
+        const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', {
+            headers: headers
+        });
 
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-//         const result = await response.json();
-//         return result;
-//     } catch (error) {
-//         console.error('Error fetching car data:', error);
-//         return null;
-//     }
-// }
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error fetching car data:', error);
+        return null;
+    }
+}
 
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
