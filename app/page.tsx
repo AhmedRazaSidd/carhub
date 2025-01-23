@@ -1,11 +1,8 @@
-import Image from "next/image";
 import { CarCard, CustomFilter, Hero, SearchBar } from "./components";
-import { fetchCars } from "@/utils";
+import { dummyCars } from "@/dummyData/cars";
 
-export default async function Home() {
-  const allCars = await fetchCars();
-  console.log(allCars);
-
+export default function Home() {
+  const allCars = dummyCars;  
   const isAllCarsEmpty =
     !Array.isArray(allCars) || allCars.length === 0 || !allCars;
 
@@ -19,21 +16,16 @@ export default async function Home() {
         </div>
         <div className="home__filters">
           <SearchBar />
-          <div className="home__filter-container">
-            <CustomFilter title="fuel" />
-            <CustomFilter title="year" />
-          </div>
         </div>
         {!isAllCarsEmpty ? (
-          <section>
-            {allCars?.map((car) => (
-              <CarCard car={car} />
+          <section className="flex flex-wrap">
+            {allCars?.map((car, index) => (
+              <CarCard car={car} key={index} />
             ))}
           </section>
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-            <p>{allCars?.message}</p>
           </div>
         )}
       </div>

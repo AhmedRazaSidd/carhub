@@ -1,28 +1,30 @@
-export async function fetchCars() {
-    const headers = {
-        'x-rapidapi-key': 'b288741334mshd57289ebb7bed9ep140521jsn1c7290c8a5e4',
-        'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
-    };
+import { CarProps } from "@/types";
 
-    try {
-        const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', {
-            headers: headers
-        });
-  
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+// export async function fetchCars() {
+//     const headers = {
+//         'x-rapidapi-key': 'b288741334mshd57289ebb7bed9ep140521jsn1c7290c8a5e4',
+//         'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+//     };
 
-        const result = await response.json();       
-        return result;
-    } catch (error) {
-        console.error('Error fetching car data:', error);
-        return null;
-    }
-}
+//     try {
+//         const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', {
+//             headers: headers
+//         });
+
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+
+//         const result = await response.json();
+//         return result;
+//     } catch (error) {
+//         console.error('Error fetching car data:', error);
+//         return null;
+//     }
+// }
 
 
-export const calculateCarRent = (city_mpg: number, year: number)=> {
+export const calculateCarRent = (city_mpg: number, year: number) => {
     const basePricePerDay = 50; // Base rental price per day in dollars
     const mileageFactor = 0.1; // Additional rate per mile driven
     const ageFactor = 0.05 // Additional rate per year of vehicle age;
@@ -35,4 +37,18 @@ export const calculateCarRent = (city_mpg: number, year: number)=> {
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
 
     return rentalRatePerDay.toFixed(0);
+}
+
+export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+    const url = new URL('https://cdn.imagin.studio/getImage');
+
+    const { make, year, model } = car;
+    url.searchParams.append('customer', 'hrjavascript-mastery');
+    url.searchParams.append('make', make);
+    url.searchParams.append('modelFamily', model.split(' ')[0]);
+    url.searchParams.append('zoomType', 'fullscreen');
+    url.searchParams.append('modelYear', `${year}`);
+    url.searchParams.append('angle', `${angle}`);
+
+    return `${url}`;
 }
