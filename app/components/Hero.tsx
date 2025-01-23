@@ -21,7 +21,7 @@ const Hero = () => {
           title="Explore Cars"
           btnType="button"
           containerStyles="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handlScroll}
+          handleClick={()=> handlScroll}
         />
       </div>
       <div className="hero__image-container">
